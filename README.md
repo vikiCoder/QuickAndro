@@ -14,7 +14,7 @@ QuickAndro possesses the following set of features:
 7. Turn On/Off Wifi, Bluetooth, GPS, Hotspot, Screen Rotation and Flashlight
 8. Set Alarm Instantly and many to come and that also at the Command of your Voice...
 
-Contributers:</b>
+Contributers:<b>
 1. Premang Vikani
 2. Raj Meghpara
 3. Meet Rayvadera
