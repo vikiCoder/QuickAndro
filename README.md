@@ -14,11 +14,11 @@ QuickAndro possesses the following set of features:
 7. Turn On/Off Wifi, Bluetooth, GPS, Hotspot, Screen Rotation and Flashlight
 8. Set Alarm Instantly and many to come and that also at the Command of your Voice...
 
-<b>Contributers:</b><br>
-1. Premang Vikani
-2. Raj Meghpara
-3. Meet Rayvadera
-4. Karan Jivani
-5. Kishan Thesiya
-6. Hardik Jadav
-7. Hardik Dobariya
+<b>Contributers:</b> <br>
+1. Premang Vikani <br>
+2. Raj Meghpara <br>
+3. Meet Rayvadera <br>
+4. Karan Jivani <br>
+5. Kishan Thesiya <br>
+6. Hardik Jadav <br>
+7. Hardik Dobariya <br>
