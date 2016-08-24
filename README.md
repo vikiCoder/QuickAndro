@@ -13,3 +13,12 @@ QuickAndro possesses the following set of features:
 6. Search from Internet's best databases of Knowledge like Google, Wikipedia, Dictionary and even Youtube
 7. Turn On/Off Wifi, Bluetooth, GPS, Hotspot, Screen Rotation and Flashlight
 8. Set Alarm Instantly and many to come and that also at the Command of your Voice...
+
+Contributers:-
+1. Premang Vikani
+2. Raj Meghpara
+3. Meet Rayvadera
+4. Karan Jivani
+5. Kishan Thesiya
+6. Hardik Jadav
+7. Hardik Dobariya
