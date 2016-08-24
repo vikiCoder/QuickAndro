@@ -16,9 +16,9 @@ QuickAndro possesses the following set of features:
 
 <b>Contributers:</b> <br>
 1. <a href="https://github.com/vikiCoder">Premang Vikani</a> <br>
-2. Raj Meghpara <br>
+2. <a href="https://github.com/thesiyakishan">Kishan Thesiya</a> <br>
 3. Meet Rayvadera <br>
 4. Karan Jivani <br>
-5. Kishan Thesiya <br>
+5. Raj Meghpara <br>
 6. Hardik Jadav <br>
 7. Hardik Dobariya <br>
