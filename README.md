@@ -15,7 +15,7 @@ QuickAndro possesses the following set of features:
 8. Set Alarm Instantly and many to come and that also at the Command of your Voice...
 
 <b>Contributers:</b> <br>
-1. Premang Vikani <br>
+1. <a href="https://github.com/vikiCoder">Premang Vikani</a> <br>
 2. Raj Meghpara <br>
 3. Meet Rayvadera <br>
 4. Karan Jivani <br>
