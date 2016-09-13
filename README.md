@@ -21,4 +21,5 @@ QuickAndro possesses the following set of features:
 4. Karan Jivani <br>
 5. Raj Meghpara <br>
 6. Hardik Jadav <br>
-7. Hardik Dobariya <br>
+7. <a href="https://github.com/hardik997">Hardik Dobariya</a> <br>
+8. Savan Makadiya
