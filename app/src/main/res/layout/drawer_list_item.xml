@@ -11,6 +11,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00ffffff"
         android:src="@mipmap/drawer_msg"
         android:id="@+id/image" />
 
