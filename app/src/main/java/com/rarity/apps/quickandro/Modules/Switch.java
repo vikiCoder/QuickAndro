@@ -7,6 +7,7 @@ import android.hardware.Camera;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
+
 import java.lang.reflect.Method;
 
 public class Switch {

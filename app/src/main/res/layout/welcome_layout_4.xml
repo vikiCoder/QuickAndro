@@ -2,6 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/intro_4">
+    android:background="@drawable/welcome_screen_4">
 
 </RelativeLayout>

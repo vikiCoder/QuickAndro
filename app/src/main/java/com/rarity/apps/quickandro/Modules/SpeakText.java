@@ -2,6 +2,7 @@ package com.rarity.apps.quickandro.Modules;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
+
 import java.util.Locale;
 
 public class SpeakText {
@@ -28,5 +29,9 @@ public class SpeakText {
 
     public void stopSpeaking(){
         tts.stop();
+    }
+
+    public void shutdown(){
+        tts.shutdown();
     }
 }
