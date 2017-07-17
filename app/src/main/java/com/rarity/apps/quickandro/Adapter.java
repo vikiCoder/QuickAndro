@@ -15,7 +15,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
 
     List<String> al_final;
 
-    // this class is data type of design of each row
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView st_mess;
         public LinearLayout l_layout;
@@ -34,13 +33,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
     }
 
     @Override
-    public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) //Can't actually understand this method.....but this is used to set each row layout
+    public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
-
-        //itemView.findViewById(R.id.inner_layout).setBackgroundResource(R.drawable.a);
-        //itemView.findViewById(R.id.inner_layout).setBackgroundColor(parent.getResources().getColor(R.color.chatBackground));
-        // We can set background color of linear layout of any message from java file by upper line code
         return new MyViewHolder(itemView);
     }
 

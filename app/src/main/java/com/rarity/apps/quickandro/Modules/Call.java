@@ -26,7 +26,7 @@ public class Call {
             callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(callIntent);
         } catch (ActivityNotFoundException activityException) {
-            return "Sorry, I could not make call";
+            return "Sorry, I could not make the call";
         }
         return "Calling";
     }

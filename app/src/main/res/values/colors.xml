@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#004d40</color>
-    <color name="colorPrimaryDark">#ffffff</color>
-    <color name="colorAccent">#1fb496</color>
+    <color name="colorPrimary">#616161</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 
-    <color name="colorAccen">#004d40</color>
+    <color name="nav_icon">#00bcd4</color>
+    <color name="nav_bg">#616161</color>
 
-    <color name="chatBackground">#b3adf896</color>
     <color name="black">#000000</color>
-    <color name="toastBackground">#71595050</color>
 
     <color name="dot_dark_screen1">#d1395c</color>
     <color name="dot_dark_screen2">#14a895</color>
@@ -19,11 +18,6 @@
     <color name="dot_light_screen2">#8cf9eb</color>
     <color name="dot_light_screen3">#93c6fd</color>
     <color name="dot_light_screen4">#e4b5fc</color>
-
-    <color name="bg_screen1">#f64c73</color>
-    <color name="bg_screen2">#20d2bb</color>
-    <color name="bg_screen3">#3395ff</color>
-    <color name="bg_screen4">#c873f4</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

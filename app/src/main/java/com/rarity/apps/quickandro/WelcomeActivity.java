@@ -1,8 +1,5 @@
 package com.rarity.apps.quickandro;
 
-/**
- * Created by Hardik on 8/7/16.
- */
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -36,11 +33,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         prefManager = new PrefManager(this);
+        prefManager.setFirstTimeLaunch(false);
 
-        if (!prefManager.isFirstTimeLaunch()) {
-            launchHomeScreen();
-            finish();
-        }
         setContentView(R.layout.activity_welcome);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
@@ -51,7 +45,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.welcome_layout_2,
                 R.layout.welcome_layout_3,
                 R.layout.welcome_layout_4
-               };
+        };
 
         addBottomDots(0);
         changeStatusBarColor();
@@ -63,7 +57,8 @@ public class WelcomeActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchHomeScreen();
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                finish();
             }
         });
 
@@ -74,7 +69,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (current < layouts.length) {
                     viewPager.setCurrentItem(current);
                 } else {
-                    launchHomeScreen();
+                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                    finish();
                 }
             }
         });
@@ -101,12 +97,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
-    }
-
-    private void launchHomeScreen() {
-        prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-        finish();
     }
 
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {

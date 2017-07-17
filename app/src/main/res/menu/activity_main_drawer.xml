@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_call"
+            android:icon="@mipmap/nav_call"
+            android:title="Call" />
+        <item
+            android:id="@+id/nav_calculate"
+            android:icon="@mipmap/nav_calculate"
+            android:title="Calculate" />
+        <item
+            android:id="@+id/nav_open"
+            android:icon="@mipmap/nav_open"
+            android:title="Open" />
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@mipmap/nav_message"
+            android:title="Message" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@mipmap/nav_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@mipmap/nav_search"
+            android:title="Search" />
+        <item
+            android:id="@+id/nav_turn"
+            android:icon="@mipmap/nav_turn"
+            android:title="Turn(on/off)" />
+        <item
+            android:id="@+id/nav_alarm"
+            android:icon="@mipmap/nav_alarm"
+            android:title="Alarm" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

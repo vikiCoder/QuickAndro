@@ -8,11 +8,11 @@ import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
+
 import com.rarity.apps.quickandro.MainActivity;
-import com.rarity.apps.quickandro.RunBackground;
 import com.rarity.apps.quickandro.RunBot;
 
-public class Message implements RecognitionListener{
+public class Message implements RecognitionListener {
 
     private Context context;
     private RunBot bot;
@@ -26,7 +26,7 @@ public class Message implements RecognitionListener{
         try {
             this.bot = (MainActivity) context;
         }catch(ClassCastException e){
-            this.bot = (RunBackground) context;
+            //this.bot = (RunBackground) context;
         }
 
         stt = new SpeechToText(context, this);

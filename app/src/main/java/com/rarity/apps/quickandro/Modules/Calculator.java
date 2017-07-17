@@ -6,7 +6,6 @@ import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
 
 import com.rarity.apps.quickandro.MainActivity;
-import com.rarity.apps.quickandro.RunBackground;
 import com.rarity.apps.quickandro.RunBot;
 
 import java.util.Stack;
@@ -22,7 +21,7 @@ public class Calculator {
         try {
             this.bot = (MainActivity) context;
         }catch(ClassCastException e){
-            this.bot = (RunBackground) context;
+            //this.bot = (RunBackground) context;
         }
     }
 

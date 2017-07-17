@@ -3,6 +3,7 @@ package com.rarity.apps.quickandro.Modules;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
