@@ -1,9 +1,6 @@
 package com.rarity.apps.quickandro.Modules;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.SpeechRecognizer;
 
 import com.rarity.apps.quickandro.MainActivity;
 import com.rarity.apps.quickandro.RunBot;
@@ -18,45 +15,7 @@ public class Calculator {
 
     public Calculator(Context context){
         this.context = context;
-        try {
-            this.bot = (MainActivity) context;
-        }catch(ClassCastException e){
-            //this.bot = (RunBackground) context;
-        }
-    }
-
-    public void calculate(){
-        SpeechToText tempSTT = new SpeechToText(context, new RecognitionListener() {
-            @Override
-            public void onResults(Bundle results) {
-                String result = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION).get(0);
-                bot.updateLayout(" " + result);
-                ans = calculate(result);
-                bot.updateLayout(ans);
-            }
-
-            @Override
-            public void onReadyForSpeech(Bundle params) {}
-            @Override
-            public void onBeginningOfSpeech() {}
-            @Override
-            public void onRmsChanged(float rmsdB) {}
-            @Override
-            public void onBufferReceived(byte[] buffer) {}
-            @Override
-            public void onEndOfSpeech() {}
-            @Override
-            public void onError(int error) {}
-            @Override
-            public void onPartialResults(Bundle partialResults) {}
-            @Override
-            public void onEvent(int eventType, Bundle params) {}
-        });
-
-        bot.updateLayout("Which mathematical expression would you like to calculate?");
-        sleep();
-        tempSTT.listen();
-
+        this.bot = (MainActivity) context;
     }
 
     public String calculate(String expression) {
@@ -150,11 +109,5 @@ public class Calculator {
                 return x - y;
         }
         return 0;
-    }
-
-    private void sleep(){
-        try {
-            Thread.sleep(2700);
-        } catch (InterruptedException e) {}
     }
 }

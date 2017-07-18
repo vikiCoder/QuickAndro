@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
@@ -160,28 +161,38 @@ public class Switch {
     private static Camera camera = null;
     private String onFlash(){
         try {
-            camera = Camera.open();
-            Camera.Parameters parameters = camera.getParameters();
-            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(parameters);
-            camera.startPreview();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                CameraManager camManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+                String cameraId = camManager.getCameraIdList()[0];
+                camManager.setTorchMode(cameraId, true);
+            }else {
+                camera = Camera.open();
+                Camera.Parameters parameters = camera.getParameters();
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                camera.setParameters(parameters);
+                camera.startPreview();
+            }
             return "Flashlight started";
-        }
-        catch(Exception e){
+        } catch(Exception e){
             return "Flashlight is already on";
         }
     }
 
     private String offFlash(){
         try {
-            Camera.Parameters parameters = camera.getParameters();
-            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-            camera.setParameters(parameters);
-            camera.stopPreview();
-            camera.release();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                CameraManager camManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+                String cameraId = camManager.getCameraIdList()[0];
+                camManager.setTorchMode(cameraId, false);
+            }else {
+                Camera.Parameters parameters = camera.getParameters();
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                camera.setParameters(parameters);
+                camera.stopPreview();
+                camera.release();
+            }
             return "Flashlight turned off";
-        }
-        catch (Exception e){
+        } catch (Exception e){
             return "Flashlight is already off";
         }
     }
