@@ -1,8 +1,12 @@
 package com.rarity.apps.quickandro.Modules;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.SpeechRecognizer;
 
 import com.rarity.apps.quickandro.MainActivity;
+import com.rarity.apps.quickandro.R;
 import com.rarity.apps.quickandro.RunBot;
 
 import java.util.Stack;
@@ -15,7 +19,45 @@ public class Calculator {
 
     public Calculator(Context context){
         this.context = context;
-        this.bot = (MainActivity) context;
+        try {
+            this.bot = (MainActivity) context;
+        }catch(ClassCastException e){
+            //this.bot = (RunBackground) context;
+        }
+    }
+
+    public void calculate(){
+        SpeechToText tempSTT = new SpeechToText(context, new RecognitionListener() {
+            @Override
+            public void onResults(Bundle results) {
+                String result = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION).get(0);
+                bot.updateLayout(" " + result);
+                ans = calculate(result);
+                bot.updateLayout(ans);
+            }
+
+            @Override
+            public void onReadyForSpeech(Bundle params) {}
+            @Override
+            public void onBeginningOfSpeech() {}
+            @Override
+            public void onRmsChanged(float rmsdB) {}
+            @Override
+            public void onBufferReceived(byte[] buffer) {}
+            @Override
+            public void onEndOfSpeech() {}
+            @Override
+            public void onError(int error) {}
+            @Override
+            public void onPartialResults(Bundle partialResults) {}
+            @Override
+            public void onEvent(int eventType, Bundle params) {}
+        });
+
+        bot.updateLayout(context.getString(R.string.Which_Expression));
+        sleep();
+        tempSTT.listen();
+
     }
 
     public String calculate(String expression) {
@@ -33,22 +75,22 @@ public class Calculator {
                     stack.push(operation(stack.pop(), stack.pop(), postfix[i].charAt(0)));
             }
 
-            return "The answer is " + stack.pop()+"";
+            return context.getString(R.string.Answer) + stack.pop()+"";
         } catch (Exception e) {
-            return "Invalid expression..";
+            return context.getString(R.string.Invalid_exp);
         }
     }
 
     private String convertToValidInfix(String infix){
-        infix = infix.replaceAll("plus", "+");
-        infix = infix.replaceAll("minus", "-");
-        infix = infix.replaceAll("divided by", "/");
-        infix = infix.replaceAll("multiplied by", "*");
-        infix = infix.replaceAll("into", "*");
-        infix = infix.replaceAll("by", "/");
-        infix = infix.replaceAll("x", "*");
-        infix = infix.replaceAll("divide", "/");
-        infix = infix.replaceAll("multiply", "*");
+        infix = infix.replaceAll(context.getString(R.string.plus), "+");
+        infix = infix.replaceAll(context.getString(R.string.minus), "-");
+        infix = infix.replaceAll(context.getString(R.string.divide_by), "/");
+        infix = infix.replaceAll(context.getString(R.string.multi_by), "*");
+        infix = infix.replaceAll(context.getString(R.string.into), "*");
+        infix = infix.replaceAll(context.getString(R.string.by), "/");
+        infix = infix.replaceAll(context.getString(R.string.x), "*");
+        infix = infix.replaceAll(context.getString(R.string.divide), "/");
+        infix = infix.replaceAll(context.getString(R.string.multiply), "*");
         infix = infix.replaceAll(" ", "");
         return infix;
     }
@@ -109,5 +151,11 @@ public class Calculator {
                 return x - y;
         }
         return 0;
+    }
+
+    private void sleep(){
+        try {
+            Thread.sleep(2700);
+        } catch (InterruptedException e) {}
     }
 }

@@ -1,10 +1,8 @@
 package com.rarity.apps.quickandro;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -17,14 +15,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rarity.apps.quickandro.Modules.SpeakText;
@@ -38,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
 
     private PrefManager prefManager;
     private ArrayList<String> conversation = new ArrayList<String>();
-    private boolean isAppReady= false;
     private ImageButton btn;
     private EditText command;
     private RecyclerView r_view;
@@ -52,11 +46,23 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //getWindow().setBackgroundDrawableResource(R.drawable.bg_main);
 
         prefManager = new PrefManager(this);
         if (prefManager.isFirstTimeLaunch()) {
             startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
             finish();
+        }
+
+        if(prefManager.getMessage()!=null) {
+            String[] msg = prefManager.getMessage().split(";,;");
+            for (int i = 0; i < msg.length; i++) {
+                conversation.add(msg[i]);
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -80,56 +86,6 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
         tts = new SpeakText(this);
         stt = new Temp_SpeechToText(this);
 
-        Thread init = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    runCommands = new RunCommands(MainActivity.this);
-                }catch (Exception e){
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Please give the permissions...", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-                    }
-
-                }
-
-                if(prefManager.getMessage()!=null) {
-                    String[] msg = prefManager.getMessage().split(";,;");
-                    for (int i = 0; i < msg.length; i++) {
-                        conversation.add(msg[i]);
-                    }
-                }
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateListView(null);
-                    }
-                });
-
-                isAppReady = true;
-            }
-        });
-        init.start();
-
-        command.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == 6) {
-                    btn.callOnClick();
-                    handled = true;
-                }
-                return handled;
-            }
-        });
-
         adp = new Adapter(conversation);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setStackFromEnd(true);
@@ -140,9 +96,11 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(command.getText().toString().equals("")) {
                     run();
-                } else{
+                }
+                else{
                     tts.stopSpeaking();
                     updateLayout(" "+command.getText().toString() );
                     runCommands.callModule(command.getText().toString() );
@@ -161,6 +119,11 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     @Override
     protected void onPause() {
         super.onPause();
+        StringBuilder sb=new StringBuilder();
+        for(int i=Math.max(0, conversation.size()-100);i<conversation.size();i++){
+            sb.append(conversation.get(i)).append(";,;");
+        }
+        prefManager.setMessage(sb.toString());
     }
 
     @Override
@@ -168,16 +131,6 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
         super.onDestroy();
         tts.stopSpeaking();
         tts.shutdown();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        StringBuilder sb=new StringBuilder();
-        for(int i=Math.max(0, conversation.size()-100);i<conversation.size();i++){
-            sb.append(conversation.get(i)).append(";,;");
-        }
-        prefManager.setMessage(sb.toString());
     }
 
     @Override
@@ -198,26 +151,14 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Intent intent = new Intent();
 
-        switch(id){
-            case R.id.share:intent.setAction(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_link));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "QuickAndro app");
-                startActivity(Intent.createChooser(intent, null));
-                break;
-            case R.id.about:intent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.rate:intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("market://details?id=com.rarity.apps.quickandro"));
-                startActivity(intent);
-                break;
-            case R.id.exit:
-                System.exit(0);
-                break;
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -228,46 +169,20 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        int[] mainIds = new int[]{R.id.nav_call, R.id.nav_calculate, R.id.nav_open, R.id.nav_message, R.id.nav_profile, R.id.nav_search, R.id.nav_turn, R.id.nav_alarm};
-        String item_descriptions[] = getResources().getStringArray(R.array.drawer_description);
-        final String item_examples[] = getResources().getStringArray(R.array.drawer_examples);
 
-        switch (id){
-            case R.id.share:
-            case R.id.about:
-            case R.id.rate:
-            case R.id.exit:
-                onOptionsItemSelected(item);
-                break;
-
-            default:
-                int i;
-                for(i=0; i<mainIds.length; i++)
-                    if(id == mainIds[i])
-                        break;
-                final int index = i;
-
-                Dialog dialog = new Dialog(MainActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.help_dialog, null, false);
-                TextView description = (TextView) dialogView.findViewById(R.id.title);
-                TextView example = (TextView) dialogView.findViewById(R.id.dialog_example);
-                ImageButton btn_speak = (ImageButton) dialogView.findViewById(R.id.dialog_btn_speak);
-
-                description.setText(item_descriptions[index]);
-                example.setText(item_examples[index]);
-                btn_speak.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tts.speak(item_examples[index]);
-                    }
-                });
-
-                dialog.setTitle("Help");
-                dialog.setContentView(dialogView);
-                dialog.setCancelable(true);
-                dialog.show();
-        }
+//        if (id == R.id.nav_camera) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -280,12 +195,6 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
         // retrieves data from the VoiceRecognizer
         if (requestCode == 1010 && resultCode == RESULT_OK) {
             String result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
-
-            if(!isAppReady){
-                Toast.makeText(MainActivity.this, "Please wait for the app to be ready...", Toast.LENGTH_LONG).show();
-                return;
-            }
-
             updateLayout(" " + result);
             runCommands.callModule(result);
         }
@@ -305,18 +214,18 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 runCommands = new RunCommands(this);
             } else {
-                Toast.makeText(this, "Can't use the app without permission...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_permission, Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
     }
 
     public String updateListView(String message){
-        if(message != null)
-            conversation.add(message);
-
+        conversation.add(message);
+        //adp = new Adapter(conversation);
+        //r_view.setAdapter(adp);
         adp.notifyDataSetChanged();
-        r_view.smoothScrollToPosition(Math.max(0, r_view.getAdapter().getItemCount()-1));
+        r_view.smoothScrollToPosition(r_view.getAdapter().getItemCount()-1);
 
         return message;
     }

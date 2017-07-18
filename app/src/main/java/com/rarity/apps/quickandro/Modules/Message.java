@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
 
 import com.rarity.apps.quickandro.MainActivity;
+import com.rarity.apps.quickandro.R;
 import com.rarity.apps.quickandro.RunBot;
 
 public class Message implements RecognitionListener {
@@ -23,7 +24,11 @@ public class Message implements RecognitionListener {
 
     public Message(Context context){
         this.context = context;
-        this.bot = (MainActivity) context;
+        try {
+            this.bot = (MainActivity) context;
+        }catch(ClassCastException e){
+            //this.bot = (RunBackground) context;
+        }
 
         stt = new SpeechToText(context, this);
         contacts = new Contacts(context);
@@ -34,6 +39,16 @@ public class Message implements RecognitionListener {
         sm.sendTextMessage(number, null, message, null, null);
     }
 
+    public void sendMessage(){
+        if(!checkPermission())
+            return;
+
+        isMessage = false;
+        bot.updateLayout(context.getString(R.string.name_of_receiver));
+        sleep();
+        stt.listen();
+    }
+
     public void sendMessage(String name){
         if(!checkPermission())
             return;
@@ -42,11 +57,11 @@ public class Message implements RecognitionListener {
         receiver = contacts.findNumber(name);
 
         if (receiver == null) {
-            bot.updateLayout("Sorry could not find the number of " + name);
+            bot.updateLayout(context.getString(R.string.could_not_find_num) + name);
             return;
         }
 
-        bot.updateLayout("Speak your message now");
+        bot.updateLayout(context.getString(R.string.speak_msg));
         sleep();
         stt.listen();
     }
@@ -58,18 +73,18 @@ public class Message implements RecognitionListener {
         if(isMessage){
             message = result;
             sendSMS(message, receiver);
-            bot.updateLayout("Message sent.");
+            bot.updateLayout(context.getString(R.string.msg_sent));
         }
         else{
             receiver = contacts.findNumber(result);
 
             if (receiver == null) {
-                bot.updateLayout("Sorry could not find the number of " + result);
+                bot.updateLayout(context.getString(R.string.could_not_find_num) + result);
                 return;
             }
 
             isMessage = true;
-            bot.updateLayout("Speak your message now");
+            bot.updateLayout(context.getString(R.string.speak_msg));
             sleep();
             stt.listen();
         }
@@ -100,7 +115,7 @@ public class Message implements RecognitionListener {
 
     private boolean checkPermission(){
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            bot.updateLayout("Sorry, I don't have permission to send a message.");
+            bot.updateLayout(context.getString(R.string.not_have_permission) + context.getString(R.string.send_msg));
             return false;
         }
         return true;

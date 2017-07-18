@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.AlarmClock;
 
+import com.rarity.apps.quickandro.R;
+
 import java.util.Calendar;
 
 /**
@@ -48,7 +50,7 @@ public class SetAlarm {
 
         int Duration = calculateDuration(hour,minutes,currentHour,currentMinute);
 
-        return  "Alarm set for " + Duration/60 + " hour and " + (Duration - (Duration/60)*60) +" minutes.";
+        return  context.getString(R.string.alarmSet) + Duration/60 + context.getString(R.string.hour) + (Duration - (Duration/60)*60) + context.getString(R.string.minute);
     }
 
     private int check(String input) {

@@ -22,7 +22,7 @@ public class AboutActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/html");
                 intent.putExtra(Intent.EXTRA_EMAIL, getResources().getString(R.string.email));
-                startActivity(Intent.createChooser(intent, "Send Email"));
+                startActivity(Intent.createChooser(intent, getResources().getString(R.string.send_email)));
             }
         });
     }

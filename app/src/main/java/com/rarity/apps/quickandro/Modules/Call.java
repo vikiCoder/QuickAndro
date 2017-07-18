@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 
+import com.rarity.apps.quickandro.R;
+
 public class Call {
 
     private Context context;
@@ -18,7 +20,7 @@ public class Call {
 
     public String call(String phoneNumber) {
         if(!checkPermission())
-            return "Sorry, I do not have permission to call";
+            return context.getString(R.string.not_have_permission) + context.getString(R.string.call);
 
         try {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -26,9 +28,9 @@ public class Call {
             callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(callIntent);
         } catch (ActivityNotFoundException activityException) {
-            return "Sorry, I could not make the call";
+            return context.getString(R.string.can_not_make_call);
         }
-        return "Calling";
+        return context.getString(R.string.calling);
     }
 
     private boolean checkPermission(){
