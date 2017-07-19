@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 
+import com.rarity.apps.quickandro.R;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,16 +30,16 @@ public class OpenApp {
         name = name.toLowerCase();
 
         if(name.equals("quickandro")){
-            return "quickandro is already open";
+            return "quickandro " + context.getString(R.string.already_open);
         }
 
         if(res.containsKey(name)){
             Intent launchApp = context.getPackageManager().getLaunchIntentForPackage(res.get(name));
             launchApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(launchApp);
-            return "Opening " + name;
+            return context.getString(R.string.opening) + name;
         }
 
-        return name + " is not installed in your phone.";
+        return name + context.getString(R.string.not_installed);
     }
 }

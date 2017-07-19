@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.rarity.apps.quickandro.R;
+
 public class Search {
 
     private Context context;
@@ -18,27 +20,27 @@ public class Search {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(SearchManager.QUERY, query);
         context.startActivity(intent);
-        return "Searching Google for " + query;
+        return context.getString(R.string.searching)+context.getString(R.string.google) + query;
     }
 
     public String wikiSearch(String query){
-        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse("http://en.wikipedia.com/wiki/" + query.replaceAll(" ", "_")) );
+        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.wikiLink) + query.replaceAll(" ", "_")) );
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
-        return "Searching Wikipedia for " + query;
+        return context.getString(R.string.searching)+context.getString(R.string.wiki) + query;
     }
 
     public String dictionarySearch(String query){
-        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse("http://www.dictionary.com/browse/" + query) );
+        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.dictionaryLink) + query) );
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
-        return "Searching dictionary for " + query;
+        return context.getString(R.string.searching)+context.getString(R.string.dictionary) + query;
     }
 
     public String youtubeSearch(String query){
-        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/results?search_query=" + query.replaceAll(" ", "+")) );
+        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.youtubeLink) + query.replaceAll(" ", "+")) );
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
-        return "Searching youtube for " + query;
+        return context.getString(R.string.searching)+context.getString(R.string.youtube) + query;
     }
 }

@@ -33,8 +33,8 @@ public class RunCommands {
         String temp[] = message.split(" ", 2);
 
         if(temp.length < 2){
-            mainActivity.tts.speak("Invalid command, try again");
-            mainActivity.updateLayout("Invalid command, try again");
+            mainActivity.tts.speak(context.getString(R.string.Invalid_command));
+            mainActivity.updateLayout(context.getString(R.string.Invalid_command));
             return;
         }
 
@@ -73,8 +73,8 @@ public class RunCommands {
                 System.exit(0);
                 break;
             default:
-                mainActivity.tts.speak("Invalid command, try again");
-                mainActivity.updateLayout("Invalid command, try again");
+                mainActivity.tts.speak(context.getString(R.string.Invalid_command));
+                mainActivity.updateLayout(context.getString(R.string.Invalid_command));
                 break;
         }
     }
@@ -96,7 +96,7 @@ public class RunCommands {
         String reply;
 
         if(argument.length()==0) {
-            reply = "Please try again with the name or number of person.";
+            reply = context.getString(R.string.try_with_name);
         } else {
             try {
                 String temp = argument.replaceAll(" ", "");
@@ -108,16 +108,16 @@ public class RunCommands {
 //                    ((OneFragment) f1).setnumberList(contacts.getnumberlist());
 
                     if (contacts.getFinallist().size() != 0)
-                        reply = "multiple contacts found, please select one";
+                        reply = context.getString(R.string.multiple_contacts);
                     else {
-                        reply = "sorry, could not found the number of " + argument;
+                        reply = context.getString(R.string.could_not_find_num) + argument;
                     }
                 } else
                     reply = call.call(contacts.findNumber(argument));
             }
         }
 
-        if(reply.compareToIgnoreCase("calling") == 0)
+        if(reply.compareToIgnoreCase(context.getString(R.string.calling)) == 0)
             reply += " " + argument;
 
         mainActivity.tts.speak(reply);

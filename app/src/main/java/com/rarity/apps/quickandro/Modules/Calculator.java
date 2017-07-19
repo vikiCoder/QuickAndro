@@ -3,6 +3,7 @@ package com.rarity.apps.quickandro.Modules;
 import android.content.Context;
 
 import com.rarity.apps.quickandro.MainActivity;
+import com.rarity.apps.quickandro.R;
 import com.rarity.apps.quickandro.RunBot;
 
 import java.util.Stack;
@@ -33,22 +34,22 @@ public class Calculator {
                     stack.push(operation(stack.pop(), stack.pop(), postfix[i].charAt(0)));
             }
 
-            return "The answer is " + stack.pop()+"";
+            return context.getString(R.string.Answer) + stack.pop()+"";
         } catch (Exception e) {
-            return "Invalid expression..";
+            return context.getString(R.string.Invalid_exp);
         }
     }
 
     private String convertToValidInfix(String infix){
-        infix = infix.replaceAll("plus", "+");
-        infix = infix.replaceAll("minus", "-");
-        infix = infix.replaceAll("divided by", "/");
-        infix = infix.replaceAll("multiplied by", "*");
-        infix = infix.replaceAll("into", "*");
-        infix = infix.replaceAll("by", "/");
-        infix = infix.replaceAll("x", "*");
-        infix = infix.replaceAll("divide", "/");
-        infix = infix.replaceAll("multiply", "*");
+        infix = infix.replaceAll(context.getString(R.string.plus), "+");
+        infix = infix.replaceAll(context.getString(R.string.minus), "-");
+        infix = infix.replaceAll(context.getString(R.string.divide_by), "/");
+        infix = infix.replaceAll(context.getString(R.string.multi_by), "*");
+        infix = infix.replaceAll(context.getString(R.string.into), "*");
+        infix = infix.replaceAll(context.getString(R.string.by), "/");
+        infix = infix.replaceAll(context.getString(R.string.x), "*");
+        infix = infix.replaceAll(context.getString(R.string.divide), "/");
+        infix = infix.replaceAll(context.getString(R.string.multiply), "*");
         infix = infix.replaceAll(" ", "");
         return infix;
     }

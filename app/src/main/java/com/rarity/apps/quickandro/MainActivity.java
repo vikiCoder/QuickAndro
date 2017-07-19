@@ -52,6 +52,13 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //getWindow().setBackgroundDrawableResource(R.drawable.bg_main);
+
+        prefManager = new PrefManager(this);
+        if (prefManager.isFirstTimeLaunch()) {
+            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+            finish();
+        }
 
         prefManager = new PrefManager(this);
         if (prefManager.isFirstTimeLaunch()) {
@@ -305,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 runCommands = new RunCommands(this);
             } else {
-                Toast.makeText(this, "Can't use the app without permission...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_permission, Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
