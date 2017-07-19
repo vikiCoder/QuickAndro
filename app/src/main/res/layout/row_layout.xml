@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mess"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="@dimen/dots_height"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"

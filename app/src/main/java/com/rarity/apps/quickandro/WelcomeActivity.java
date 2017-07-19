@@ -42,9 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btn_next);
 
         layouts = new int[]{R.layout.welcome_layout_1,
-                R.layout.welcome_layout_2,
-                R.layout.welcome_layout_3,
-                R.layout.welcome_layout_4
+                R.layout.welcome_layout_2
         };
 
         addBottomDots(0);

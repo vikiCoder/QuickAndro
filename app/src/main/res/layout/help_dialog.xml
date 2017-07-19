@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:text="This is the detail about selected command"
+        android:text="@string/details"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"/>
 
