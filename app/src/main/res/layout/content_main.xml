@@ -12,6 +12,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingLeft="@dimen/very_small_padding"
+        android:paddingRight="@dimen/very_small_padding"
         android:inputType="text"
         android:hint="@string/hint"
         android:imeOptions="actionDone"
@@ -31,10 +34,12 @@
     </FrameLayout>
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/runBtn_size"
+        android:layout_height="@dimen/runBtn_size"
+        android:padding="@dimen/very_small_padding"
         android:id="@+id/btn_run"
         android:src="@mipmap/btn_run"
+        android:scaleType="fitCenter"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:layout_gravity="center"/>
 

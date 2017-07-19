@@ -8,6 +8,7 @@
     <string name="Email">Email: apps.rarity@gmail.com</string>
     <string name="share_link">http://play.google.com/store/apps/details?id=com.rarity.apps.quickandro</string>
     <string name="hint">Speak or Type Command Here....</string>
+    <string name="details">This is the detail about selected command</string>
 
     <string name="start">GOT IT</string>
     <string name="next">NEXT</string>
@@ -15,7 +16,7 @@
 
     // calculator
     <string name="Which_Expression">Which mathematical expression would you like to calculate?</string>
-    <string name="Answer">The answer is </string>
+    <string name="Answer">The answer is" "</string>
     <string name="Invalid_exp">Invalid expression..</string>
 
     <string name="plus">plus</string>
@@ -29,59 +30,59 @@
     <string name="multiply">multiply</string>
 
     //call
-    <string name="not_have_permission">Sorry, I do not have permission to </string>
+    <string name="not_have_permission">Sorry, I do not have permission to" "</string>
     <string name="can_not_make_call">Sorry, I could not make the call</string>
     <string name="call">call</string>
     <string name="calling">Calling</string>
 
     //message
     <string name="name_of_receiver">Please give me the name of receiver.</string>
-    <string name="could_not_find_num">Sorry could not find the number of </string>
+    <string name="could_not_find_num">Sorry could not find the number of" "</string>
     <string name="speak_msg">Speak your message now</string>
     <string name="send_msg">send a message.</string>
     <string name="msg_sent">Message sent.</string>
 
     //openApp
     <string name="already_open">is already open</string>
-    <string name="opening">Opening </string>
-    <string name="not_installed"> is not installed in your phone.</string>
+    <string name="opening">Opening" "</string>
+    <string name="not_installed">" "is not installed in your phone.</string>
 
     //profile
     <string name="Invalid_pro">Invalid profile type.</string>
     <string name="profile_changed">Profile changed to </string>\
 
     //search
-    <string name="searching">Searching </string>
-    <string name="google">Google for </string>
-    <string name="wiki">Wikipedia for </string>
-    <string name="dictionary">Dictionary for </string>
-    <string name="youtube">Youtube for </string>
+    <string name="searching">Searching" "</string>
+    <string name="google">Google for" "</string>
+    <string name="wiki">Wikipedia for" "</string>
+    <string name="dictionary">Dictionary for" "</string>
+    <string name="youtube">Youtube for" "</string>
     <string name="wikiLink">http://en.wikipedia.com/wiki/</string>
     <string name="dictionaryLink">http://www.dictionary.com/browse/</string>
     <string name="youtubeLink">http://www.youtube.com/results?search_query=</string>
 
     //SetAlarm
-    <string name="alarmSet">Alarm set for </string>
-    <string name="hour"> hour and </string>
-    <string name="minute"> minutes. </string>
+    <string name="alarmSet">Alarm set for" "</string>
+    <string name="hour">" "hour and" "</string>
+    <string name="minute">" "minutes.</string>
 
     //Switch
     <string name="ON">on</string>
     <string name="could_not_catch">Sorry, I could not catch you</string>
-    <string name="already_on"> is already on.</string>
-    <string name="already_off"> is already off.</string>
-    <string name="turned_on"> turned on.</string>
-    <string name="turned_off"> turned off.</string>
-    <string name="started"> started</string>
-    <string name="stopped"> stopped</string>
+    <string name="already_on">" "is already on.</string>
+    <string name="already_off">" "is already off.</string>
+    <string name="turned_on">" "turned on.</string>
+    <string name="turned_off">" "turned off.</string>
+    <string name="started">" "started</string>
+    <string name="stopped">" "stopped</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="wifi">Wifi</string>
     <string name="hotspot">Hotspot</string>
     <string name="auto_rotation">Auto rotation</string>
     <string name="flashLight">Flashlight</string>
     <string name="need_your_help">I need your help to do that.</string>
-    <string name="is_on"> is on.</string>
-    <string name="is_off"> is off.</string>
+    <string name="is_on">" "is on.</string>
+    <string name="is_off">" "is off.</string>
     <string name="could_not_start_hotspot">Sorry, I could not access hotspot settings.</string>
 
     //AboutActivity
