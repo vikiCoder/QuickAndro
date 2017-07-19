@@ -49,7 +49,7 @@
 
     //profile
     <string name="Invalid_pro">Invalid profile type.</string>
-    <string name="profile_changed">Profile changed to </string>\
+    <string name="profile_changed">Profile changed to" "</string>
 
     //search
     <string name="searching">Searching" "</string>

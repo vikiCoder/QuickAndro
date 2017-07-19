@@ -7,6 +7,7 @@ import android.hardware.Camera;
 import android.hardware.camera2.CameraManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.provider.Settings;
 
 import com.rarity.apps.quickandro.R;
@@ -163,7 +164,7 @@ public class Switch {
     private static Camera camera = null;
     private String onFlash(){
         try {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 CameraManager camManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
                 String cameraId = camManager.getCameraIdList()[0];
                 camManager.setTorchMode(cameraId, true);
@@ -182,7 +183,7 @@ public class Switch {
 
     private String offFlash(){
         try {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 CameraManager camManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
                 String cameraId = camManager.getCameraIdList()[0];
                 camManager.setTorchMode(cameraId, false);

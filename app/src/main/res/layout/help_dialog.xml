@@ -2,7 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#212121"
+    android:padding="@dimen/small_padding">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/main_title"
+        android:text="Title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#FAFAFA"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#BDBDBD"
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -10,7 +29,8 @@
         android:id="@+id/title"
         android:text="@string/details"
         android:layout_gravity="center_horizontal"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="#EEEEEE"/>
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -23,7 +43,8 @@
             android:padding="@dimen/small_padding"
             android:id="@+id/dialog_example"
             android:text="an example"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="#EEEEEE"/>
 
         <ImageButton
             android:layout_height="wrap_content"
@@ -31,7 +52,7 @@
             android:id="@+id/dialog_btn_speak"
             android:src="@drawable/icon_speak"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
     </LinearLayout>
 

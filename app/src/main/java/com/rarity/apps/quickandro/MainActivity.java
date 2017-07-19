@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -257,12 +258,14 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
                 Dialog dialog = new Dialog(MainActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.help_dialog, null, false);
+                TextView title = (TextView) dialogView.findViewById(R.id.main_title);
                 TextView description = (TextView) dialogView.findViewById(R.id.title);
                 TextView example = (TextView) dialogView.findViewById(R.id.dialog_example);
                 ImageButton btn_speak = (ImageButton) dialogView.findViewById(R.id.dialog_btn_speak);
 
+                title.setText(item.getTitle());
                 description.setText(item_descriptions[index]);
-                example.setText(item_examples[index]);
+                example.setText("eg: " + item_examples[index]);
                 btn_speak.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -270,7 +273,8 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
                     }
                 });
 
-                dialog.setTitle("Help");
+
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(dialogView);
                 dialog.setCancelable(true);
                 dialog.show();
