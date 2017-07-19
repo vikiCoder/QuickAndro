@@ -4,10 +4,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
-
     <string name="email">apps.rarity@gmail.com</string>
     <string name="Email">Email: apps.rarity@gmail.com</string>
+    <string name="share_link">http://play.google.com/store/apps/details?id=com.rarity.apps.quickandro</string>
     <string name="hint">Speak or Type Command Here....</string>
 
     <string name="start">GOT IT</string>
@@ -96,10 +95,26 @@
     <string name="try_with_name">Please try again with the name or number of person.</string>
     <string name="multiple_contacts">multiple contacts found, please select one</string>
 
+    <string-array name="drawer_description">
+        <item>To call, Use the format: \'Call\' + \'Name/Number\'</item>
+        <item>Speak \'Calculate\' and then any simple mathematical operation you want to perform.</item>
+        <item>To easily open a specific application from a bunch, use the format \'Open\' + \'Name\'</item>
+        <item>Message anyone by saying out loud the  phrase \'Message\' + \'Name\'</item>
+        <item>Easier Profile Management using the command \'Profile\' + \'Profile Mode you want to set\'</item>
+        <item>Search any among the Google, Wikipedia, Youtube or Dictionary easily using the command \'Search\' + \'Google/Wiki/Wikipedia/Dictionary\' (by default Google) + \'anything you want to search\'</item>
+        <item>Easy turn on/off any of the Wi-Fi, Bluetooth, or any other accessibility options using the command \'Turn\' + \'On/Off\' + \'Option\'</item>
+        <item>Set Alarm Quickly using the Command \'Alarm\' + \'Time\' + \'AM/PM\'</item>
+    </string-array>
 
-
-
-
-
+    <string-array name="drawer_examples">
+        <item>Call Emma Watson </item>
+        <item>Calculate 159 + 289 * 3</item>
+        <item>Open Camera</item>
+        <item>Message Emma Watson</item>
+        <item>Profile Silent</item>
+        <item>Search Dictionary stalker</item>
+        <item>Turn On Flash</item>
+        <item>Alarm 6:45 A.M.</item>
+    </string-array>
 
 </resources>

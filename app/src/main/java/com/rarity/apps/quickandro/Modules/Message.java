@@ -24,11 +24,7 @@ public class Message implements RecognitionListener {
 
     public Message(Context context){
         this.context = context;
-        try {
-            this.bot = (MainActivity) context;
-        }catch(ClassCastException e){
-            //this.bot = (RunBackground) context;
-        }
+        this.bot = (MainActivity) context;
 
         stt = new SpeechToText(context, this);
         contacts = new Contacts(context);
@@ -37,16 +33,6 @@ public class Message implements RecognitionListener {
     private void sendSMS(String message, String number) {
         SmsManager sm = SmsManager.getDefault();
         sm.sendTextMessage(number, null, message, null, null);
-    }
-
-    public void sendMessage(){
-        if(!checkPermission())
-            return;
-
-        isMessage = false;
-        bot.updateLayout(context.getString(R.string.name_of_receiver));
-        sleep();
-        stt.listen();
     }
 
     public void sendMessage(String name){

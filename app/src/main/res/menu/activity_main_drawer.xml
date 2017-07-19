@@ -39,13 +39,24 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Share"
+                android:id="@+id/share"
+                android:icon="@drawable/icon_share"/>
+
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="About Us"
+                android:id="@+id/about"
+                android:icon="@drawable/icon_about"/>
+
+            <item
+                android:title="Rate Us"
+                android:id="@+id/rate"
+                android:icon="@drawable/icon_rate"/>
+
+            <item
+                android:title="Exit"
+                android:id="@+id/exit"
+                android:icon="@drawable/icon_exit"/>
         </menu>
     </item>
 

@@ -18,12 +18,14 @@ public class RunCommands {
     private Context context;
     private MainActivity mainActivity;
     private Contacts contacts;
+    private OpenApp openApp;
 
     public RunCommands(Context context){
         this.context = context;
         this.mainActivity = (MainActivity) context;
 
         contacts = new Contacts(context);
+        openApp = new OpenApp(context);
     }
 
     public void callModule(String message){
@@ -75,41 +77,6 @@ public class RunCommands {
                 mainActivity.updateLayout(context.getString(R.string.Invalid_command));
                 break;
         }
-
-//        /*call functions based on command*/
-//        if(command.equalsIgnoreCase("call")){
-//            commandCall(argument);
-//        }
-//        else if(command.equalsIgnoreCase("calculate")){
-//            commandCalculate(argument);
-//        }
-//        else if(command.equalsIgnoreCase("message")){
-//            commandMessage(argument);
-//        }
-//        else if(command.equalsIgnoreCase("open")){
-//            commandOpen(argument);
-//        }
-//        else if(command.equalsIgnoreCase("profile")){
-//            commandProfile(argument);
-//        }
-//        else if(command.equalsIgnoreCase("search")){
-//            commandSearch(argument);
-//        }
-//        else if(command.equalsIgnoreCase("turn")){
-//            commandTurn(argument);
-//        }
-//        else if(command.equalsIgnoreCase("alarm")){
-//            commandAlarm(argument);
-//            Toast.makeText(context, argument, Toast.LENGTH_LONG).show();
-//        }
-//        else if(command.equalsIgnoreCase("close")){
-//            mainActivity.finish();
-//            System.exit(0);
-//        }
-//        else{
-//            mainActivity.tts.speak("Invalid command, try again");
-//            mainActivity.updateLayout("Invalid command, try again");
-//        }
     }
 
 
@@ -160,28 +127,17 @@ public class RunCommands {
     /*function to calculate a mathematical expression*/
     private void commandCalculate(String argument){
         Calculator calculator = new Calculator(context);
-
-        if(argument.equals(""))
-            calculator.calculate();
-        else
-            mainActivity.updateLayout(calculator.calculate(argument));
+        mainActivity.updateLayout(calculator.calculate(argument));
     }
 
     /*function to send a message*/
     private void commandMessage(String argument){
         Message msg = new Message(context);
-
-        Toast.makeText(context, "."+argument+".", Toast.LENGTH_SHORT).show();
-
-        if(argument.equals(""))
-            msg.sendMessage();
-        else
-            msg.sendMessage(argument);
+        msg.sendMessage(argument);
     }
 
     /*function to open a app*/
     private void commandOpen(String argument){
-        OpenApp openApp = new OpenApp(context);
         mainActivity.updateLayout(openApp.openApp(argument));
     }
 
@@ -194,16 +150,28 @@ public class RunCommands {
     /*function for search*/
     private void commandSearch(String argument) {
         Search search = new Search(context);
-        if(argument.split(" ")[0].equalsIgnoreCase("wiki"))
-            mainActivity.updateLayout(search.wikiSearch(argument.replaceFirst("wiki ", "")));
-        else if(argument.split(" ")[0].equalsIgnoreCase("wikipedia"))
-            mainActivity.updateLayout( search.wikiSearch(argument.replaceFirst("wikipedia ", "")) );
-        else if(argument.split(" ")[0].equalsIgnoreCase("dictionary"))
-            mainActivity.updateLayout( search.dictionarySearch(argument.replaceFirst("dictionary ", "")) );
-        else if(argument.split(" ")[0].equalsIgnoreCase("youtube"))
-            mainActivity.updateLayout( search.youtubeSearch(argument.replaceFirst("youtube ", "")) );
-        else
-            mainActivity.updateLayout( search.googleSearch(argument) );
+        argument = argument.toLowerCase();
+        String whereToSearch = argument.split(" ")[0];
+
+        switch(whereToSearch){
+            case "wiki":
+                mainActivity.updateLayout(search.wikiSearch(argument.replaceFirst("wiki ", "")));
+                break;
+            case "wikipedia":
+                mainActivity.updateLayout( search.wikiSearch(argument.replaceFirst("wikipedia ", "")) );
+                break;
+            case "dictionary":
+                mainActivity.updateLayout( search.dictionarySearch(argument.replaceFirst("dictionary ", "")) );
+                break;
+            case "youtube":
+                mainActivity.updateLayout( search.youtubeSearch(argument.replaceFirst("youtube ", "")) );
+                break;
+            case "google":
+                mainActivity.updateLayout( search.googleSearch(argument.replaceFirst("google ", "")) );
+                break;
+            default:
+                mainActivity.updateLayout( search.googleSearch(argument) );
+        }
     }
 
     /*function for extra utilities*/
