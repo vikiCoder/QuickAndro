@@ -32,6 +32,8 @@ import com.rarity.apps.quickandro.Modules.Temp_SpeechToText;
 
 import java.util.ArrayList;
 
+import static android.R.attr.data;
+
 public class MainActivity extends AppCompatActivity implements RunBot, NavigationView.OnNavigationItemSelectedListener {
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     private PrefManager prefManager;
     private ArrayList<String> conversation = new ArrayList<String>();
     private boolean isAppReady= false;
-    private ImageButton btn;
+    public ImageButton btn;
     private EditText command;
     private RecyclerView r_view;
 
@@ -100,8 +102,10 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
                         }
                     });
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS )!= PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.READ_CONTACTS,
+                                                        Manifest.permission.CALL_PHONE,
+                                                        Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_READ_CONTACTS);
                     }
 
                 }

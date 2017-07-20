@@ -133,7 +133,7 @@ public class Switch {
             wifimanager.setWifiEnabled(false);
             Method method = wifimanager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
             method.invoke(wifimanager, wificonfiguration, false);
-            return context.getString(R.string.bluetooth) + context.getString(R.string.stopped);
+            return context.getString(R.string.hotspot) + context.getString(R.string.stopped);
         }
         catch (Exception e) {
             return context.getString(R.string.could_not_start_hotspot);

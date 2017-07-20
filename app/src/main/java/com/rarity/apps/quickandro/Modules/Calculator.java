@@ -6,6 +6,7 @@ import com.rarity.apps.quickandro.MainActivity;
 import com.rarity.apps.quickandro.R;
 import com.rarity.apps.quickandro.RunBot;
 
+import java.text.DecimalFormat;
 import java.util.Stack;
 
 public class Calculator {
@@ -33,8 +34,11 @@ public class Calculator {
                 else
                     stack.push(operation(stack.pop(), stack.pop(), postfix[i].charAt(0)));
             }
+            double ans = stack.pop();
+            DecimalFormat df = new DecimalFormat("#.######");
+            ans = Double.valueOf(df.format(ans));
 
-            return context.getString(R.string.Answer) + stack.pop()+"";
+            return context.getString(R.string.Answer) + ans +"";
         } catch (Exception e) {
             return context.getString(R.string.Invalid_exp);
         }

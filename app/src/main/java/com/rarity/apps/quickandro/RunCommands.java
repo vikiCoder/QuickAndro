@@ -13,6 +13,8 @@ import com.rarity.apps.quickandro.Modules.Search;
 import com.rarity.apps.quickandro.Modules.SetAlarm;
 import com.rarity.apps.quickandro.Modules.Switch;
 
+
+
 public class RunCommands {
 
     private Context context;
@@ -84,12 +86,6 @@ public class RunCommands {
 
 
 
-
-
-
-
-
-
     /*function to call a person*/
     private void commandCall(String argument){
         Call call = new Call(context);
@@ -104,8 +100,9 @@ public class RunCommands {
                 reply = call.call(temp);
             } catch (NumberFormatException e) {
                 if (contacts.findNumber(argument) == null) {
-//                    ((OneFragment) f1).setSuggest(contacts.getFinallist());
-//                    ((OneFragment) f1).setnumberList(contacts.getnumberlist());
+//                     f1.setSuggest(contacts.getFinallist());
+//                     f1.setnumberList(contacts.getnumberlist());
+
 
                     if (contacts.getFinallist().size() != 0)
                         reply = context.getString(R.string.multiple_contacts);
