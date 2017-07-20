@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     private PrefManager prefManager;
     private ArrayList<String> conversation = new ArrayList<String>();
     private boolean isAppReady= false;
-    public ImageButton btn;
+    private ImageButton btn;
     private EditText command;
     private RecyclerView r_view;
 
