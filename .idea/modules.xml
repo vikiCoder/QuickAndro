@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QuickAndro.iml" filepath="$PROJECT_DIR$/QuickAndro.iml" />
-      <module fileurl="file://$PROJECT_DIR$/QuickAndro-master.iml" filepath="$PROJECT_DIR$/QuickAndro-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
