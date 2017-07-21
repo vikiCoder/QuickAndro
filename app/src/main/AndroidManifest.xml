@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rarity.apps.quickandro">
+    package="com.rarity.apps.quickandro"
+    android:versionCode="2"
+    android:versionName="8.2.0">
 
     <!-- permissions for Call module -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
