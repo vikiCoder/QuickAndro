@@ -84,6 +84,7 @@
     <string name="is_on">" "is on.</string>
     <string name="is_off">" "is off.</string>
     <string name="could_not_start_hotspot">Sorry, I could not access hotspot settings.</string>
+    <string name="title_suggest">Select one</string>
 
     //AboutActivity
     <string name="send_email">Send Email</string>

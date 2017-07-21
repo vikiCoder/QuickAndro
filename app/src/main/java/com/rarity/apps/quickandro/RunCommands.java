@@ -104,8 +104,7 @@ public class RunCommands {
                 reply = call.call(temp);
             } catch (NumberFormatException e) {
                 if (contacts.findNumber(argument) == null) {
-//                    ((OneFragment) f1).setSuggest(contacts.getFinallist());
-//                    ((OneFragment) f1).setnumberList(contacts.getnumberlist());
+                    mainActivity.showSuggestDialog(contacts.getFinallist(), contacts.getnumberlist());
 
                     if (contacts.getFinallist().size() != 0)
                         reply = context.getString(R.string.multiple_contacts);

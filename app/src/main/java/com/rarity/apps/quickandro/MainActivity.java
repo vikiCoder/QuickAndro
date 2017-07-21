@@ -23,11 +23,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rarity.apps.quickandro.Modules.Call;
 import com.rarity.apps.quickandro.Modules.SpeakText;
 import com.rarity.apps.quickandro.Modules.Temp_SpeechToText;
 
@@ -148,6 +152,11 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!isAppReady){
+                    Toast.makeText(MainActivity.this, "Please wait for the app to be ready...", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 if(command.getText().toString().equals("")) {
                     run();
                 } else{
@@ -292,11 +301,6 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
         if (requestCode == 1010 && resultCode == RESULT_OK) {
             String result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
 
-            if(!isAppReady){
-                Toast.makeText(MainActivity.this, "Please wait for the app to be ready...", Toast.LENGTH_LONG).show();
-                return;
-            }
-
             updateLayout(" " + result);
             runCommands.callModule(result);
         }
@@ -342,5 +346,27 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     public void run(){
         tts.stopSpeaking();
         stt.listen();
+    }
+
+    public void showSuggestDialog(final ArrayList<String> names, final ArrayList<String> numbers){
+        Dialog dialog = new Dialog(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.suggest_dialog, null, false);
+        ListView listView = (ListView) dialogView.findViewById(R.id.suggestionList);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.soggest_dialog_row, names);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Call call = new Call(getApplicationContext());
+                call.call(numbers.get(i));
+            }
+        });
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(dialogView);
+        dialog.setCancelable(true);
+        dialog.show();
     }
 }
