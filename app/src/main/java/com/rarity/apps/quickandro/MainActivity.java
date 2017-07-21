@@ -37,8 +37,6 @@ import com.rarity.apps.quickandro.Modules.Temp_SpeechToText;
 
 import java.util.ArrayList;
 
-import static android.R.attr.data;
-
 public class MainActivity extends AppCompatActivity implements RunBot, NavigationView.OnNavigationItemSelectedListener {
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
@@ -46,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
     private PrefManager prefManager;
     private ArrayList<String> conversation = new ArrayList<String>();
     private boolean isAppReady= false;
-    private ImageButton btn;
-    private EditText command;
+    protected ImageButton btn;
+    protected EditText command;
     private RecyclerView r_view;
 
     private Temp_SpeechToText stt;
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements RunBot, Navigatio
             }
         });
 
-        adp = new Adapter(conversation);
+        adp = new Adapter(conversation, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setStackFromEnd(true);
         r_view.setLayoutManager(mLayoutManager);

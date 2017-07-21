@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 
 public class Switch {
 
-    Context context;
+    private Context context;
 
     public Switch(Context context){
         this.context = context;

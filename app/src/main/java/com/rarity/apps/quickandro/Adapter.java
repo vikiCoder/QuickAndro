@@ -14,6 +14,7 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
 
     List<String> al_final;
+    private MainActivity mainActivity;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView st_mess;
@@ -25,11 +26,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
             st_mess = (TextView) view.findViewById(R.id.mess);
             l_layout = (LinearLayout) view.findViewById(R.id.inner_layout);
             r_layout = (RelativeLayout) view.findViewById(R.id.rl);
+
+            r_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(st_mess.getText().toString().charAt(0) == ' ') {
+                        mainActivity.command.setText(st_mess.getText().toString().trim());
+                        mainActivity.btn.callOnClick();
+                    }
+                }
+            });
         }
     }
 
-    public Adapter(List<String> alf) {
+    public Adapter(List<String> alf, MainActivity mainActivity) {
         al_final = alf;
+        this.mainActivity = mainActivity;
     }
 
     @Override
