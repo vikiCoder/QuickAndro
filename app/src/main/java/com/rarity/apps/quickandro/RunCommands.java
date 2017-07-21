@@ -13,6 +13,8 @@ import com.rarity.apps.quickandro.Modules.Search;
 import com.rarity.apps.quickandro.Modules.SetAlarm;
 import com.rarity.apps.quickandro.Modules.Switch;
 
+
+
 public class RunCommands {
 
     private Context context;
@@ -78,15 +80,6 @@ public class RunCommands {
                 break;
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 
